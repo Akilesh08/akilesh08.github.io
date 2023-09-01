@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Library </title>
+        </head>
+        <body>
+            <h1><center><u><i>Library Management System</i></u></h1></center>
+            <h2>Add new book:</h2>
+            <label for="bookTitle">Book Title:</label>
+            <input type="text" id="bookTitle"><br>
+
+            <label for="authorName">Author:</label>
+            <input type="text" id="authorName"><br>
+            <label for="yearOfPublication">Year of Publication:</label>
+            <input type="number" id="yearOfPublication"><br>
+            <button onclick="addBook()">Add Book</button>
+            <h2>Your Library:</h2>
+            <ul id="bookList">
+                <!-- Book items will be added here -->
+            </ul>
+        <script>
+        function addBook() {
+            const bookTitle = document.getElementById("bookTitle").value;
+            const authorName = document.getElementById("authorName").value;
+            const yearOfPublication = parseInt(document.getElementById("yearOfPublication").value);
+            const currentYear = new Date().getFullYear();
+            const ageOfBook = currentYear - yearOfPublication;
+            const bookList = document.getElementById("bookList");
+            const bookItem = document.createElement("li");
+            bookItem.innerHTML = `${bookTitle} Written by ${authorName} (Published in${yearOfPublication}, ${ageOfBook} years old)
+            <button onclick="removeBook(this)">Remove</button>`;
+            bookList.appendChild(bookItem);
+            document.getElementById("bookTitle").value = "";
+            document.getElementById("authorName").value = "";
+            document.getElementById("yearOfPublication").value = "";
+        }
+        function removeBook(button) {
+            const bookItem = button.parentNode;
+            bookItem.parentNode.removeChild(bookItem);
+        }
+        </script>
+        </body>
+</html>
+<style>
+    label{
+        color: #53a8b6;
+
+        font-size: large;
+        font-family: cursive;
+    }
+    h1{
+        color: #5585b5;
+        box-shadow: 0cqb;
+    }
+    h2{
+        color: #5585b5;
+    }
+    body{
+        background-color: #bbe4e9;
+        color: #a6b61a;
+    }
+    button{
+        background-color: #79c2d0;
+        border: 0;
+        font-size: small;
+        font-family: cursive;
+    }
+    ul{
+        color: #5585b5;
+    }
+    
+</style>
