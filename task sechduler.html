@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task scheduler</title>
+</head>
+<body>
+    <h1>Task Scheduler</h1>
+    <h3>Add Task</h3>
+    <label for="task" >Task name:</label>
+    <input type="text" id="task" placeholder="Enter task..."></br>
+
+    <label for="Ddate">Due Date:</label>
+    <input type="date" id="Ddate"></br>
+    
+    <label for="priority">Set Priority:</label>
+    <select id="priority">
+        <option value="top">Top priority</option>
+        <option value="middle">Middle priority</option>
+        <option value="low">Lower Priority</option>
+    </select>
+    <button onclick="addTask()">ADD TASK</button>
+
+    <div class="task list" id="list">
+        <h2>Task List:</h2>
+        
+    </div>
+
+    <script>
+        const taskinput=document.getElementById('task');
+        const dateinput=document.getElementById('Ddate');
+        const priorityinput=document.getElementById('priority');
+        const taskList=document.getElementById('list');
+
+        function addTask()
+        {
+            const task=taskinput.value;
+            const date=dateinput.value;
+            const priority=priorityinput.value;
+            const taskItem = document.createElement("div");
+            taskItem.classList.add("task");
+            taskItem.innerHTML = `
+            <p>${task}</p>
+            <p>Priority: ${priority}</p>
+            <p>Due Date: ${date}</p>
+            <button onclick="removeTask(this)">Mark Done</button>`;
+            taskList.appendChild(taskItem); 
+        }
+        function removeTask(button) {
+            const taskItem = button.parentNode;
+            taskItem.parentNode.removeChild(taskItem);
+        }
+    </script>
+    <style>
+        body{
+            background-color: blanchedalmond;
+        }
+        h1{
+            font-family: cursive;
+        }
+    </style>
+</body>
+</html>
